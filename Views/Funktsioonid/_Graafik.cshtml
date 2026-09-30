@@ -1,0 +1,11 @@
+﻿<div class="row g-2 align-items-center my-3">
+    <div class="col-auto"><label class="col-form-label" for="alates">x alates</label></div>
+    <div class="col-auto"><input id="alates" type="number" step="1" class="form-control" style="width:100px" value="-5" onchange="uuendaGraafik()" /></div>
+    <div class="col-auto"><label class="col-form-label" for="kuni">kuni</label></div>
+    <div class="col-auto"><input id="kuni" type="number" step="1" class="form-control" style="width:100px" value="5" onchange="uuendaGraafik()" /></div>
+</div>
+
+<canvas id="funktsiooniGraafik"></canvas>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="~/js/graafik.js"></script>

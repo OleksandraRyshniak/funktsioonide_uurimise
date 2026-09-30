@@ -1,0 +1,36 @@
+﻿@model FunktsiooniUurimine
+@{
+    ViewData["Title"] = "Detailid";
+}
+
+<partial name="_ValemiKuva" />
+
+<h1>f(x) = <span data-valem="@Model.Valem">@Model.Valem</span></h1>
+
+<dl class="row" style="white-space:pre-line">
+    <dt class="col-sm-3">Määramispiirkond D(f)</dt>
+    <dd class="col-sm-9">@Model.Maaramispiirkond</dd>
+    <dt class="col-sm-3">Nullkohad</dt>
+    <dd class="col-sm-9">@Model.Nullkohad</dd>
+    <dt class="col-sm-3">f(x) &gt; 0</dt>
+    <dd class="col-sm-9">@Model.Positiivsus</dd>
+    <dt class="col-sm-3">f(x) &lt; 0</dt>
+    <dd class="col-sm-9">@Model.Negatiivsus</dd>
+    <dt class="col-sm-3">Tuletis f'(x)</dt>
+    <dd class="col-sm-9"><span data-valem="@Model.Tuletis">@Model.Tuletis</span></dd>
+    <dt class="col-sm-3">Kriitilised punktid</dt>
+
+    <dt class="col-sm-3">Ekstreemumid</dt>
+    <dd class="col-sm-9">@Model.Ekstreemumid</dd>
+    <dt class="col-sm-3">Loodud</dt>
+    <dd class="col-sm-9">@Model.LuodudAeg.ToString("dd.MM.yyyy HH:mm")</dd>
+</dl>
+
+<partial name="_Graafik" />
+
+<a asp-action="Edit" asp-route-id="@Model.Id">Muuda</a> |
+<a asp-action="Index">Tagasi nimekirja</a>
+
+@section Scripts {
+    <script>joonistaGraafik(@Json.Serialize(Model.Valem));</script>
+}

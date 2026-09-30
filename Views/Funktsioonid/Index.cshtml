@@ -1,0 +1,47 @@
+﻿@model IEnumerable<FunktsiooniUurimine>
+@{
+    ViewData["Title"] = "Funktsioonid";
+}
+
+<partial name="_ValemiKuva" />
+
+<h1>Funktsioonide uurimised</h1>
+<a asp-action="Create" class="btn btn-success mb-3">+ Uus funktsioon</a>
+
+<div class="table-responsive">
+    <table class="table table-striped align-middle">
+        <thead>
+            <tr>
+                <th>Valem</th>
+                <th>Määramispiirkond</th>
+                <th>Tuletis</th>
+                <th>Nullkohad</th>
+                <th>f(x) &gt; 0</th>
+                <th>f(x) &lt; 0</th>
+                <th>Kriitilised punktid</th>
+                <th>Ekstreemumid</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody style="white-space:pre-line">
+            @foreach (var f in Model)
+            {
+                <tr>
+                    <td><span data-valem="@f.Valem">@f.Valem</span></td>
+                    <td>@f.Maaramispiirkond</td>
+                    <td><span data-valem="@f.Tuletis">@f.Tuletis</span></td>
+                    <td>@f.Nullkohad</td>
+                    <td>@f.Positiivsus</td>
+                    <td>@f.Negatiivsus</td>
+                    
+                    <td>@f.Ekstreemumid</td>
+                    <td style="white-space:normal">
+                        <a asp-action="Details" asp-route-id="@f.Id">Vaata</a> |
+                        <a asp-action="Edit" asp-route-id="@f.Id">Muuda</a> |
+                        <a asp-action="Delete" asp-route-id="@f.Id">Kustuta</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,23 @@
+﻿@model FunktsiooniUurimine
+@{
+    ViewData["Title"] = "Muuda";
+}
+
+<h1>Muuda funktsiooni</h1>
+
+<form asp-action="Edit" asp-route-id="@Model.Id" method="post">
+    <partial name="_Valjad" />
+    <button type="submit" class="btn btn-primary">Salvesta</button>
+    <button type="button" class="btn btn-secondary"
+            onclick="joonistaGraafik(document.getElementById('Valem').value)">
+        Eelvaade
+    </button>
+    <a asp-action="Index" class="btn btn-link">Tühista</a>
+</form>
+
+<partial name="_Graafik" />
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>joonistaGraafik(@Json.Serialize(Model.Valem));</script>
+}

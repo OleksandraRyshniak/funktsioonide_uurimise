@@ -1,0 +1,12 @@
+﻿@model FunktsiooniUurimine
+@{
+    ViewData["Title"] = "Kustuta";
+}
+<partial name="_ValemiKuva" />
+<h1>Kas kustutada?</h1>
+<p>f(x) = <strong data-valem="@Model.Valem">@Model.Valem</strong></p>
+
+<form asp-action="Delete" asp-route-id="@Model.Id" method="post">
+    <button type="submit" class="btn btn-danger">Kustuta</button>
+    <a asp-action="Index" class="btn btn-link">Tühista</a>
+</form>

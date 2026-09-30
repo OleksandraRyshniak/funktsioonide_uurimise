@@ -1,0 +1,101 @@
+﻿@model FunktsiooniUurimine
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+<div class="mb-3">
+    <label class="form-label fs-5">Funktsioon f(x)</label>
+
+    <math-field id="matemaatikaVali" inputmode="none" math-virtual-keyboard-policy="manual"></math-field>
+    <div id="valemiViga" class="form-text text-muted"></div>
+    <span asp-validation-for="Valem" class="text-danger"></span>
+
+    <label asp-for="Valem" class="form-text mt-2 mb-0">Valem tekstina</label>
+    <input asp-for="Valem" class="form-control form-control-sm" readonly tabindex="-1" />
+    <div class="form-text">
+        Määramispiirkond, tuletis, kriitilised punktid ja ekstreemumid arvutatakse automaatselt.
+    </div>
+</div>
+
+<div id="klaviatuur" class="kl-ruudustik"></div>
+
+<style>
+    #matemaatikaVali {
+        display: block;
+        font-size: 2rem;
+        min-height: 72px;
+        padding: 10px 14px;
+        background: #fff;
+        border: 1px solid #ced4da;
+        border-radius: .5rem;
+    }
+
+        #matemaatikaVali:focus-within {
+            border-color: #86b7fe;
+            box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .25);
+            outline: none;
+        }
+
+        #matemaatikaVali::part(virtual-keyboard-toggle),
+        #matemaatikaVali::part(menu-toggle) {
+            display: none;
+        }
+
+    .kl-ruudustik {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 8px;
+        max-width: 480px;
+        padding: 12px;
+        background: #f1f3f5;
+        border-radius: 16px;
+        margin-bottom: 1rem;
+    }
+
+        .kl-ruudustik button {
+            height: 52px;
+            border: 0;
+            border-radius: 12px;
+            background: #fff;
+            font-size: 1.25rem;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, .18);
+            user-select: none;
+        }
+
+            .kl-ruudustik button:active {
+                background: #dbe4ff;
+            }
+
+        .kl-ruudustik .op {
+            background: #fff4e0;
+        }
+
+        .kl-ruudustik .fn {
+            background: #e7f0ff;
+            color: #1d4ed8;
+            font-size: 1.05rem;
+        }
+
+        .kl-ruudustik .kl-punane {
+            background: #ffe3e3;
+        }
+
+    .kl-murd {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        line-height: 1;
+        font-size: .95rem;
+    }
+
+        .kl-murd > span:first-child {
+            border-bottom: 1.5px solid currentColor;
+            padding: 0 5px 2px;
+        }
+
+        .kl-murd > span:last-child {
+            padding-top: 2px;
+        }
+</style>
+
+<script defer src="https://cdn.jsdelivr.net/npm/mathlive"></script>
+<script defer src="~/js/valemi-toimetaja.js"></script>

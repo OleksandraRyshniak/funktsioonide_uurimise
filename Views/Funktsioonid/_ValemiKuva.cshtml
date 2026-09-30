@@ -1,0 +1,20 @@
+﻿
+<style>
+    math-field.valem-kuva {
+        display: inline-block;
+        font-size: inherit;
+        background: transparent;
+        border: 0;
+        padding: 0;
+        min-height: 0;
+        pointer-events: none;
+        vertical-align: middle;
+    }
+
+        math-field.valem-kuva::part(virtual-keyboard-toggle),
+        math-field.valem-kuva::part(menu-toggle) {
+            display: none;
+        }
+</style>
+<script defer src="https://cdn.jsdelivr.net/npm/mathlive"></script>
+<script defer src="~/js/valemi-kuva.js"></script>
