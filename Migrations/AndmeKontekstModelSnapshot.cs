@@ -27,6 +27,22 @@ namespace funktsioonide_uurimise.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Kaanupunktid")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Kahanemine")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Kasvamine")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Kumerus")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("LuodudAeg")
                         .HasColumnType("TEXT");
 
@@ -34,11 +50,27 @@ namespace funktsioonide_uurimise.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Muutumispiirkond")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Negatiivsus")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Nogusus")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Nullkohad")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Paarsus")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Periood")
                         .IsRequired()
                         .HasColumnType("TEXT");
 

@@ -10,8 +10,11 @@ public class FunktsiooniUurimine
     [Display(Name = "Valem")]
     public string Valem { get; set; } = string.Empty;
 
-    [Display(Name = "Määramispiirkond")]
+    [Display(Name = "Määramispiirkond X")]
     public string Maaramispiirkond { get; set; } = string.Empty;
+
+    [Display(Name = "Muutumispiirkond Y")]
+    public string Muutumispiirkond { get; set; } = string.Empty;
 
     [Display(Name = "Tuletis f'(x)")]
     public string Tuletis { get; set; } = string.Empty;
@@ -25,8 +28,29 @@ public class FunktsiooniUurimine
     [Display(Name = "Negatiivsuspiirkond f(x) < 0")]
     public string Negatiivsus { get; set; } = string.Empty;
 
+    [Display(Name = "Kasvamispiirkond X↑")]
+    public string Kasvamine { get; set; } = string.Empty;
+
+    [Display(Name = "Kahanemispiirkond X↓")]
+    public string Kahanemine { get; set; } = string.Empty;
+
     [Display(Name = "Ekstreemumid")]
     public string Ekstreemumid { get; set; } = string.Empty;
+
+    [Display(Name = "Nõgususvahemikud f''(x) > 0")]
+    public string Nogusus { get; set; } = string.Empty;
+
+    [Display(Name = "Kumerusvahemikud f''(x) < 0")]
+    public string Kumerus { get; set; } = string.Empty;
+
+    [Display(Name = "Käänupunktid")]
+    public string Kaanupunktid { get; set; } = string.Empty;
+
+    [Display(Name = "Paarsus")]
+    public string Paarsus { get; set; } = string.Empty;
+
+    [Display(Name = "Periood T")]
+    public string Periood { get; set; } = string.Empty;
 
     [Display(Name = "Loodud")]
     public DateTime LuodudAeg { get; set; } = DateTime.UtcNow;

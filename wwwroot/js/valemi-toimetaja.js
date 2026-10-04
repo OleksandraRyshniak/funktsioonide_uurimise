@@ -46,7 +46,7 @@ function latexValemiks(latex) {
     }
 
     const funktsioonid = { '\\sin': 'Sin', '\\cos': 'Cos', '\\tan': 'Tan', '\\ln': 'Ln' };
-    const aatomiAlgus = k => k !== undefined && (/^\d/.test(k) || k === 'x' || k === '(' || k === '{' ||
+    const aatomiAlgus = k => k !== undefined && (/^\d/.test(k) || k === 'x' || k === 'e' || k === '\\exponentialE' || k === '(' || k === '{' ||
         ['\\pi', '\\left', '\\frac', '\\sqrt', '\\sin', '\\cos', '\\tan', '\\ln'].includes(k));
 
     let p = 0;
@@ -107,6 +107,7 @@ function latexValemiks(latex) {
         if (k === undefined) throw new Error('Täida tühjad kohad');
         if (/^\d/.test(k)) return k;
         if (k === 'x') return 'x';
+        if (k === 'e' || k === '\\exponentialE') return 'e';
         if (k === '\\pi') return 'Pi';
         if (k === '\\placeholder') throw new Error('Täida tühjad kohad');
         if (k === '(') { const v = avaldis(); oodata(')'); return '(' + v + ')'; }
@@ -143,9 +144,6 @@ function latexValemiks(latex) {
     return eemaldaValjasSulud(tulemus);
 }
 
-
-
-
 // ================= klaviatuur =================
 const NUPUD = [
     { s: '7', ins: '7' }, { s: '8', ins: '8' }, { s: '9', ins: '9' },
@@ -176,7 +174,8 @@ const NUPUD = [
     { s: '◀', cmd: 'moveToPreviousChar' },
     { s: '▶', cmd: 'moveToNextChar' },
 
-    { s: '( )', ins: '\\left(#0\\right)', k: 'op', lai: 3 },
+    { s: '( )', ins: '\\left(#0\\right)', k: 'op', lai: 2 },
+    { s: '<i>e</i>', ins: 'e', k: 'fn' },
     { s: 'Tühjenda', cmd: 'clear', k: 'kl-punane', lai: 3 }
 ];
 

@@ -7,8 +7,9 @@ function valemLatexiks(valem) {
     const votta = () => t[p++];
 
     // 2x, 3\sin(x), x(x+1) -- ilma korrutusmärgita, nagu õpikus
-    const lopebTegurina = s => /^-?(\d+(\.\d+)?|x)$/.test(s) || s.endsWith('\\right)') || s.endsWith('\\pi ');
-    const algabTahega = s => /^(x|\\pi|\\sqrt|\\sin|\\cos|\\tan|\\ln|\\left\()/.test(s);
+    const lopebTegurina = s => /^-?(\d+(\.\d+)?|x|e)$/.test(s) || s.endsWith('\\right)') || s.endsWith('\\pi ')
+        || (s.startsWith('\\frac{') && s.endsWith('}'));
+    const algabTahega = s => /^(x|e|\\pi|\\sqrt|\\sin|\\cos|\\tan|\\ln|\\left\()/.test(s);
 
     function avaldis() {
         let s = '';
@@ -61,6 +62,7 @@ function valemLatexiks(valem) {
         }
         const nimi = k.toLowerCase();
         if (nimi === 'x') return { t: 'x' };
+        if (nimi === 'e') return { t: 'e' };
         if (nimi === 'pi' || k === 'π') return { t: '\\pi ' };
         if (funktsioonid[nimi]) {
             if (votta() !== '(') throw new Error('sulg');
@@ -93,6 +95,5 @@ function naitaValemeid() {
         mf.setValue(latex);
     });
 }
-const lopebTegurina = s => /^-?(\d+(\.\d+)?|x)$/.test(s) || s.endsWith('\\right)') || s.endsWith('\\pi ')
-    || (s.startsWith('\\frac{') && s.endsWith('}'));
+
 customElements.whenDefined('math-field').then(naitaValemeid);

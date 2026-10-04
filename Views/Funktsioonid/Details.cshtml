@@ -1,30 +1,195 @@
 ﻿@model FunktsiooniUurimine
 @{
-    ViewData["Title"] = "Detailid";
+    ViewData["Title"] = "Vastused";
+    var lahendus = ViewBag.Lahendus as List<LahendusSamm>;
+
+    string Hulk(string? raw, string nimi, string puudu) =>
+        Tuhi(raw) ? "" : Puudub(raw) ? puudu : nimi + " = " + raw!.Trim().Replace("\n", "; ");
+
+    // 8. paarsus
+    string paarsus = (Model.Paarsus ?? "").Trim();
+    string paarsuseVastus =
+        paarsus.StartsWith("nii paaris") ? "Nii paaris- kui ka paaritu funktsioon" :
+        paarsus.StartsWith("paarisfunktsioon") ? "Paarisfunktsioon" :
+        paarsus.StartsWith("paaritu") ? "Paaritu funktsioon" :
+        paarsus.StartsWith("ei ole") ? "Ei ole paaris- ega paaritu funktsioon" :
+        paarsus.StartsWith("määramata") ? "Määramata" : "";
+
+    // 9. periood
+    string periood = (Model.Periood ?? "").Trim();
+    bool? perioodiline = null;
+    string perioodiVastus = "";
+    if (periood.StartsWith("perioodiline"))
+    {
+        perioodiline = true;
+        int k = periood.IndexOf("T = ");
+        perioodiVastus = "Funktsioon on perioodiline, periood " + (k >= 0 ? periood[k..] : "");
+    }
+    else if (periood.StartsWith("konstantne"))
+    {
+        perioodiline = false;
+        perioodiVastus = "Konstantne funktsioon, periood puudub.";
+    }
+    else if (periood.StartsWith("ei ole"))
+    {
+        perioodiline = false;
+        perioodiVastus = "Funktsioon ei ole perioodiline.";
+    }
+
+    var read = new List<Rida>
+    {
+        new("1. Määramispiirkond X", Model.Maaramispiirkond,
+            Hulk(Model.Maaramispiirkond, "X", "Määramispiirkond on tühi: X = ∅")),
+        new("2. Muutumispiirkond Y", Model.Muutumispiirkond,
+            Hulk(Model.Muutumispiirkond, "Y", "Muutumispiirkond on tühi: Y = ∅")),
+        new("3. Nullkohad X₀", Model.Nullkohad, Nullid(Model.Nullkohad)),
+        new("4. Positiivsuspiirkond X⁺ (f(x) > 0)", Model.Positiivsus,
+            Hulk(Model.Positiivsus, "X⁺", "Funktsioon ei ole kunagi positiivne")),
+        new("    Negatiivsuspiirkond X⁻ (f(x) < 0)", Model.Negatiivsus,
+            Hulk(Model.Negatiivsus, "X⁻", "Funktsioon ei ole kunagi negatiivne")),
+        new("5. Kasvamispiirkond X↑", Model.Kasvamine,
+            Hulk(Model.Kasvamine, "X↑", "Funktsioon ei kasva kusagil")),
+        new("    Kahanemispiirkond X↓", Model.Kahanemine,
+            Hulk(Model.Kahanemine, "X↓", "Funktsioon ei kahane kusagil")),
+        new("6. Ekstreemumkohad Xₑ", Model.Ekstreemumid, Ekstreemumid(Model.Ekstreemumid)),
+        new("    Tuletis f'(x)", Model.Tuletis, Model.Tuletis ?? "", null, true),
+        new("7. Nõgususvahemikud (f'' > 0)", Model.Nogusus,
+            Hulk(Model.Nogusus, "Nõgus", "Nõgusvahemikke ei ole")),
+        new("    Kumerusvahemikud (f'' < 0)", Model.Kumerus,
+            Hulk(Model.Kumerus, "Kumer", "Kumeravahemikke ei ole")),
+        new("    Käänupunktid", Model.Kaanupunktid, Kaanupunktid(Model.Kaanupunktid)),
+        new("8. Paaris- või paaritu funktsioon", paarsus, paarsuseVastus),
+        new("9. Perioodiline funktsioon: f(x + T) = f(x)", periood, perioodiVastus, perioodiline),
+    };
+
+    bool koikTuhjad = read.All(r => Tuhi(r.Raw));
+}
+
+@functions {
+    record Rida(string Silt, string? Raw, string Vastus, bool? Jah = null, bool Valem = false);
+
+    static bool Tuhi(string? s) => string.IsNullOrWhiteSpace(s);
+
+    static bool Puudub(string? s)
+    {
+        var t = s?.Trim();
+        return t == "puuduvad" || t == "∅";
+    }
+
+    static string[] Reaks(string? s) =>
+        (s ?? "").Split('\n', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+
+    static string Nullid(string? s)
+    {
+        if (Tuhi(s)) return "";
+        if (Puudub(s)) return "Nullkohti ei ole: X₀ = ∅";
+        return "X₀ = {" + string.Join("; ", Reaks(s).Select(l => l.Replace("x = ", ""))) + "}";
+    }
+
+    static string Ekstreemumid(string? s)
+    {
+        if (Tuhi(s)) return "";
+        if (Puudub(s)) return "Ekstreemumkohti ei ole";
+        var read = Reaks(s).Select(l =>
+        {
+            var m = System.Text.RegularExpressions.Regex.Match(l, @"^(max|min): \((.+); (.+)\)$");
+            if (!m.Success) return l;
+            string nimi = m.Groups[1].Value == "max" ? "Maksimumkoht" : "Miinimumkoht";
+            return $"{nimi}: x = {m.Groups[2].Value}, f(x) = {m.Groups[3].Value}";
+        });
+        return string.Join("\n", read);
+    }
+
+    static string Kaanupunktid(string? s)
+    {
+        if (Tuhi(s)) return "";
+        if (Puudub(s)) return "Käänupunkte ei ole";
+        return string.Join("\n", Reaks(s).Select(l => "Käänupunkt " + l));
+    }
 }
 
 <partial name="_ValemiKuva" />
 
-<h1>f(x) = <span data-valem="@Model.Valem">@Model.Valem</span></h1>
+<h1 class="mb-3">f(x) = <span data-valem="@Model.Valem">@Model.Valem</span></h1>
 
-<dl class="row" style="white-space:pre-line">
-    <dt class="col-sm-3">Määramispiirkond D(f)</dt>
-    <dd class="col-sm-9">@Model.Maaramispiirkond</dd>
-    <dt class="col-sm-3">Nullkohad</dt>
-    <dd class="col-sm-9">@Model.Nullkohad</dd>
-    <dt class="col-sm-3">f(x) &gt; 0</dt>
-    <dd class="col-sm-9">@Model.Positiivsus</dd>
-    <dt class="col-sm-3">f(x) &lt; 0</dt>
-    <dd class="col-sm-9">@Model.Negatiivsus</dd>
-    <dt class="col-sm-3">Tuletis f'(x)</dt>
-    <dd class="col-sm-9"><span data-valem="@Model.Tuletis">@Model.Tuletis</span></dd>
-    <dt class="col-sm-3">Kriitilised punktid</dt>
+@if (koikTuhjad)
+{
+    <div class="alert alert-warning">
+        See kirje on loodud enne uute omaduste lisamist. Vajuta
+        <a asp-action="Edit" asp-route-id="@Model.Id">Muuda</a> ja salvesta, siis arvutatakse kõik uuesti.
+    </div>
+}
 
-    <dt class="col-sm-3">Ekstreemumid</dt>
-    <dd class="col-sm-9">@Model.Ekstreemumid</dd>
-    <dt class="col-sm-3">Loodud</dt>
-    <dd class="col-sm-9">@Model.LuodudAeg.ToString("dd.MM.yyyy HH:mm")</dd>
-</dl>
+<div class="card mb-3">
+    <div class="card-header fw-bold">Vastused</div>
+    <table class="table table-sm mb-0 align-middle" style="table-layout:fixed">
+        <colgroup>
+            <col style="width:38%" />
+            <col style="width:62%" />
+        </colgroup>
+        <tbody>
+            @foreach (var r in read)
+            {
+                <tr>
+                    <td class="ps-3" style="white-space:pre">@r.Silt</td>
+                    <td>
+                        @if (Tuhi(r.Raw))
+                        {
+                            <span class="badge text-bg-light border text-muted">pole arvutatud</span>
+                        }
+                        else if (r.Jah == true)
+                        {
+                            <span class="badge text-bg-success">Jah</span>
+                            <span class="ms-2">@r.Vastus</span>
+                        }
+                        else if (r.Jah == false)
+                        {
+                            <span class="badge text-bg-danger">Ei</span>
+                            @if (!string.IsNullOrEmpty(r.Vastus))
+                            {
+                                <span class="ms-2">@r.Vastus</span>
+                            }
+                        }
+                        else if (r.Valem)
+                        {
+                            <span data-valem="@r.Vastus">@r.Vastus</span>
+                        }
+                        else if (Puudub(r.Raw))
+                        {
+                            <span class="badge text-bg-secondary">Puudub</span>
+                            <span class="ms-2 text-muted">@r.Vastus</span>
+                        }
+                        else
+                        {
+                            <span style="white-space:pre-line">@r.Vastus</span>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@if (lahendus != null)
+{
+  
+    <div id="lahendus" class="d-none">
+        @foreach (var samm in lahendus)
+        {
+            <div class="card mb-3">
+                <div class="card-header fw-bold">@samm.Pealkiri</div>
+                <ul class="list-group list-group-flush">
+                    @foreach (var rida in samm.Read)
+                    {
+                        <li class="list-group-item @(rida.StartsWith("Vastus") ? "fw-bold bg-light" : "")">@rida</li>
+                    }
+                </ul>
+            </div>
+        }
+    </div>
+}
+
+<p class="text-muted small">Loodud: @Model.LuodudAeg.ToString("dd.MM.yyyy HH:mm")</p>
 
 <partial name="_Graafik" />
 
@@ -33,4 +198,24 @@
 
 @section Scripts {
     <script>joonistaGraafik(@Json.Serialize(Model.Valem));</script>
+    <script>
+        (function () {
+            const kast = document.getElementById('lahendus');
+            if (!kast) return;
+
+            function seaNahtav(naita) {
+                kast.classList.toggle('d-none', !naita);
+                if (naita) kast.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+
+            document.addEventListener('keydown', e => {
+                if (e.ctrlKey || e.altKey || e.metaKey) return;
+                const t = e.target;
+                if (t.matches && t.matches('input, textarea, select, math-field')) return;
+                if (t.isContentEditable) return;
+                if (e.code === 'KeyL') seaNahtav(kast.classList.contains('d-none'));
+                else if (e.key === 'Escape') seaNahtav(false);
+            });
+        })();
+    </script>
 }

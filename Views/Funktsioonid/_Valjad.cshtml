@@ -9,11 +9,7 @@
     <div id="valemiViga" class="form-text text-muted"></div>
     <span asp-validation-for="Valem" class="text-danger"></span>
 
-    <label asp-for="Valem" class="form-text mt-2 mb-0">Valem tekstina</label>
-    <input asp-for="Valem" class="form-control form-control-sm" readonly tabindex="-1" />
-    <div class="form-text">
-        Määramispiirkond, tuletis, kriitilised punktid ja ekstreemumid arvutatakse automaatselt.
-    </div>
+    <input type="hidden" asp-for="Valem" />
 </div>
 
 <div id="klaviatuur" class="kl-ruudustik"></div>
