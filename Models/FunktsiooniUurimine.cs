@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace funktsioonide_uurimise.Models;
 
@@ -9,6 +10,11 @@ public class FunktsiooniUurimine
     [Required(ErrorMessage = "Valem on kohustuslik")]
     [Display(Name = "Valem")]
     public string Valem { get; set; } = string.Empty;
+
+    // Эти данные не сохраняются в базе данных.
+    // Они нужны только для выбора анализов в форме.
+    [NotMapped]
+    public List<string> Valikud { get; set; } = new();
 
     [Display(Name = "Määramispiirkond X")]
     public string Maaramispiirkond { get; set; } = string.Empty;

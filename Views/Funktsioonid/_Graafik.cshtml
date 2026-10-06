@@ -1,8 +1,80 @@
-﻿<div class="row g-2 align-items-center my-3">
-    <div class="col-auto"><label class="col-form-label" for="alates">x alates</label></div>
-    <div class="col-auto"><input id="alates" type="number" step="1" class="form-control" style="width:100px" value="-5" onchange="uuendaGraafik()" /></div>
-    <div class="col-auto"><label class="col-form-label" for="kuni">kuni</label></div>
-    <div class="col-auto"><input id="kuni" type="number" step="1" class="form-control" style="width:100px" value="5" onchange="uuendaGraafik()" /></div>
+﻿<div class="my-3">
+
+    <!-- X telg -->
+    <div class="row g-2 align-items-center mb-2">
+
+        <div class="col-auto">
+            <label class="col-form-label" for="alates">
+                x alates
+            </label>
+        </div>
+
+        <div class="col-auto">
+            <input id="alates"
+                   type="number"
+                   step="1"
+                   class="form-control"
+                   style="width:100px"
+                   value="-5"
+                   onchange="uuendaGraafik()" />
+        </div>
+
+        <div class="col-auto">
+            <label class="col-form-label" for="kuni">
+                kuni
+            </label>
+        </div>
+
+        <div class="col-auto">
+            <input id="kuni"
+                   type="number"
+                   step="1"
+                   class="form-control"
+                   style="width:100px"
+                   value="5"
+                   onchange="uuendaGraafik()" />
+        </div>
+
+    </div>
+
+
+    <!-- Y telg -->
+    <div class="row g-2 align-items-center">
+
+        <div class="col-auto">
+            <label class="col-form-label" for="yAlates">
+                y alates
+            </label>
+        </div>
+
+        <div class="col-auto">
+            <input id="yAlates"
+                   type="number"
+                   step="1"
+                   class="form-control"
+                   style="width:100px"
+                   value="-10"
+                   onchange="uuendaGraafik()" />
+        </div>
+
+        <div class="col-auto">
+            <label class="col-form-label" for="yKuni">
+                kuni
+            </label>
+        </div>
+
+        <div class="col-auto">
+            <input id="yKuni"
+                   type="number"
+                   step="1"
+                   class="form-control"
+                   style="width:100px"
+                   value="10"
+                   onchange="uuendaGraafik()" />
+        </div>
+
+    </div>
+
 </div>
 
 <canvas id="funktsiooniGraafik"></canvas>

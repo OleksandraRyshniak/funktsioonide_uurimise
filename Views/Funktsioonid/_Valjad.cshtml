@@ -2,32 +2,302 @@
 
 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-<div class="mb-3">
-    <label class="form-label fs-5">Funktsioon f(x)</label>
+<!-- Funktsiooni sisestamine -->
+<div class="mb-4">
 
-    <math-field id="matemaatikaVali" inputmode="none" math-virtual-keyboard-policy="manual"></math-field>
-    <div id="valemiViga" class="form-text text-muted"></div>
-    <span asp-validation-for="Valem" class="text-danger"></span>
+    <label class="form-label fs-5 fw-semibold">
+        Funktsioon f(x)
+    </label>
+
+    <math-field id="matemaatikaVali"
+                inputmode="none"
+                math-virtual-keyboard-policy="manual">
+    </math-field>
+
+    <div id="valemiViga"
+         class="form-text text-danger mt-2">
+    </div>
+
+    <span asp-validation-for="Valem"
+          class="text-danger">
+    </span>
 
     <input type="hidden" asp-for="Valem" />
+
 </div>
 
-<div id="klaviatuur" class="kl-ruudustik"></div>
+
+<!-- Matemaatiline klaviatuur -->
+<div class="klaviatuuri-plokk mb-4">
+
+    <div class="klaviatuuri-tabs">
+
+        <button type="button"
+                class="klaviatuuri-tab active"
+                data-klaviatuur="pohi">
+            Põhiline
+        </button>
+
+        <button type="button"
+                class="klaviatuuri-tab"
+                data-klaviatuur="trig">
+            Trigonomeetria
+        </button>
+
+        <button type="button"
+                class="klaviatuuri-tab"
+                data-klaviatuur="log">
+            Logaritmid
+        </button>
+
+        <button type="button"
+                class="klaviatuuri-tab"
+                data-klaviatuur="muu">
+            Muu
+        </button>
+
+    </div>
+
+    <div id="klaviatuur"
+         class="kl-ruudustik">
+    </div>
+
+</div>
+
+
+<!-- Mida uurida -->
+<div class="card mt-4 mb-4">
+
+    <div class="card-header bg-white">
+        <h4 class="mb-0">
+            Mida uurida?
+        </h4>
+    </div>
+
+    <div class="card-body">
+
+        <!-- Vali kõik -->
+        <div class="form-check mb-3">
+
+            <input type="checkbox"
+                   class="form-check-input"
+                   id="valiKoik">
+
+            <label class="form-check-label fw-bold"
+                   for="valiKoik">
+                Vali kõik
+            </label>
+
+        </div>
+
+        <hr />
+
+        <div class="row">
+
+            <!-- Vasak veerg -->
+            <div class="col-md-6">
+
+                <div class="form-check mb-2">
+
+                    <input class="form-check-input uuring"
+                           type="checkbox"
+                           name="Valikud"
+                           value="Maaramispiirkond"
+                           id="Maaramispiirkond"
+                           checked="@Model.Valikud.Contains("Maaramispiirkond")">
+
+                    <label class="form-check-label"
+                           for="Maaramispiirkond">
+                        Määramispiirkond
+                    </label>
+
+                </div>
+
+
+                <div class="form-check mb-2">
+
+                    <input class="form-check-input uuring"
+                           type="checkbox"
+                           name="Valikud"
+                           value="Muutumispiirkond"
+                           id="Muutumispiirkond"
+                           checked="@Model.Valikud.Contains("Muutumispiirkond")">
+
+                    <label class="form-check-label"
+                           for="Muutumispiirkond">
+                        Muutumispiirkond
+                    </label>
+
+                </div>
+
+
+                <div class="form-check mb-2">
+
+                    <input class="form-check-input uuring"
+                           type="checkbox"
+                           name="Valikud"
+                           value="Tuletis"
+                           id="Tuletis"
+                           checked="@Model.Valikud.Contains("Tuletis")">
+
+                    <label class="form-check-label"
+                           for="Tuletis">
+                        Tuletis f'(x)
+                    </label>
+
+                </div>
+
+
+                <div class="form-check mb-2">
+
+                    <input class="form-check-input uuring"
+                           type="checkbox"
+                           name="Valikud"
+                           value="Nullkohad"
+                           id="Nullkohad"
+                           checked="@Model.Valikud.Contains("Nullkohad")">
+
+                    <label class="form-check-label"
+                           for="Nullkohad">
+                        Nullkohad
+                    </label>
+
+                </div>
+
+
+                <div class="form-check mb-2">
+
+                    <input class="form-check-input uuring"
+                           type="checkbox"
+                           name="Valikud"
+                           value="Margiuuring"
+                           id="Margiuuring"
+                           checked="@Model.Valikud.Contains("Margiuuring")">
+
+                    <label class="form-check-label"
+                           for="Margiuuring">
+                        Positiivsus ja negatiivsus
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <!-- Parem veerg -->
+            <div class="col-md-6">
+
+                <div class="form-check mb-2">
+
+                    <input class="form-check-input uuring"
+                           type="checkbox"
+                           name="Valikud"
+                           value="Monotoonsus"
+                           id="Monotoonsus"
+                           checked="@Model.Valikud.Contains("Monotoonsus")">
+
+                    <label class="form-check-label"
+                           for="Monotoonsus">
+                        Kasvamine ja kahanemine
+                    </label>
+
+                </div>
+
+
+                <div class="form-check mb-2">
+
+                    <input class="form-check-input uuring"
+                           type="checkbox"
+                           name="Valikud"
+                           value="Ekstreemumid"
+                           id="Ekstreemumid"
+                           checked="@Model.Valikud.Contains("Ekstreemumid")">
+
+                    <label class="form-check-label"
+                           for="Ekstreemumid">
+                        Ekstreemumid
+                    </label>
+
+                </div>
+
+
+                <div class="form-check mb-2">
+
+                    <input class="form-check-input uuring"
+                           type="checkbox"
+                           name="Valikud"
+                           value="Kumerus"
+                           id="Kumerus"
+                           checked="@Model.Valikud.Contains("Kumerus")">
+
+                    <label class="form-check-label"
+                           for="Kumerus">
+                        Nõgusus ja kumerus
+                    </label>
+
+                </div>
+
+
+                <div class="form-check mb-2">
+
+                    <input class="form-check-input uuring"
+                           type="checkbox"
+                           name="Valikud"
+                           value="Paarsus"
+                           id="Paarsus"
+                           checked="@Model.Valikud.Contains("Paarsus")">
+
+                    <label class="form-check-label"
+                           for="Paarsus">
+                        Paaris- või paaritu funktsioon
+                    </label>
+
+                </div>
+
+
+                <div class="form-check mb-2">
+
+                    <input class="form-check-input uuring"
+                           type="checkbox"
+                           name="Valikud"
+                           value="Periood"
+                           id="Periood"
+                           checked="@Model.Valikud.Contains("Periood")">
+
+                    <label class="form-check-label"
+                           for="Periood">
+                        Perioodilisus
+                    </label>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
 
 <style>
+
+    /* Funktsiooni sisestus */
+
     #matemaatikaVali {
         display: block;
+        width: 100%;
         font-size: 2rem;
         min-height: 72px;
         padding: 10px 14px;
-        background: #fff;
+        background: #ffffff;
         border: 1px solid #ced4da;
-        border-radius: .5rem;
+        border-radius: 12px;
     }
 
         #matemaatikaVali:focus-within {
             border-color: #86b7fe;
-            box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .25);
+            box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .15);
             outline: none;
         }
 
@@ -36,29 +306,75 @@
             display: none;
         }
 
+
+    /* Kogu klaviatuur */
+
+    .klaviatuuri-plokk {
+        max-width: 650px;
+        padding: 12px;
+        background: #f1f3f5;
+        border-radius: 18px;
+    }
+
+
+    /* Klaviatuuri kategooriad */
+
+    .klaviatuuri-tabs {
+        display: flex;
+        gap: 7px;
+        margin-bottom: 12px;
+        overflow-x: auto;
+    }
+
+    .klaviatuuri-tab {
+        border: 0;
+        background: #ffffff;
+        color: #495057;
+        padding: 9px 14px;
+        border-radius: 10px;
+        font-size: 14px;
+        font-weight: 600;
+        white-space: nowrap;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, .10);
+    }
+
+        .klaviatuuri-tab:hover {
+            background: #e7f0ff;
+            color: #1d4ed8;
+        }
+
+        .klaviatuuri-tab.active {
+            background: #0d6efd;
+            color: #ffffff;
+        }
+
+
+    /* Klaviatuuri nupud */
+
     .kl-ruudustik {
         display: grid;
         grid-template-columns: repeat(6, 1fr);
         gap: 8px;
-        max-width: 480px;
-        padding: 12px;
-        background: #f1f3f5;
-        border-radius: 16px;
-        margin-bottom: 1rem;
     }
 
         .kl-ruudustik button {
             height: 52px;
             border: 0;
             border-radius: 12px;
-            background: #fff;
+            background: #ffffff;
             font-size: 1.25rem;
             box-shadow: 0 1px 2px rgba(0, 0, 0, .18);
             user-select: none;
         }
 
+            .kl-ruudustik button:hover {
+                transform: translateY(-1px);
+                box-shadow: 0 3px 7px rgba(0, 0, 0, .13);
+            }
+
             .kl-ruudustik button:active {
                 background: #dbe4ff;
+                transform: translateY(0);
             }
 
         .kl-ruudustik .op {
@@ -74,6 +390,9 @@
         .kl-ruudustik .kl-punane {
             background: #ffe3e3;
         }
+
+
+    /* Murd */
 
     .kl-murd {
         display: inline-flex;
@@ -91,7 +410,105 @@
         .kl-murd > span:last-child {
             padding-top: 2px;
         }
+
+
+    /* Telefon */
+
+    @@media (max-width: 600px) {
+
+        .klaviatuuri-plokk {
+            padding: 9px;
+        }
+
+        .kl-ruudustik {
+            gap: 6px;
+        }
+
+            .kl-ruudustik button {
+                height: 46px;
+                font-size: 1rem;
+            }
+
+        .klaviatuuri-tab {
+            padding: 8px 11px;
+            font-size: 13px;
+        }
+    }
+
 </style>
 
-<script defer src="https://cdn.jsdelivr.net/npm/mathlive"></script>
-<script defer src="~/js/valemi-toimetaja.js"></script>
+
+<script>
+
+    var valiKoik = document.getElementById("valiKoik");
+    var uuringud = document.querySelectorAll(".uuring");
+
+
+    // Vali kõik
+
+    if (valiKoik) {
+
+        valiKoik.addEventListener("change", function () {
+
+            for (var i = 0; i < uuringud.length; i++) {
+                uuringud[i].checked = this.checked;
+            }
+
+        });
+    }
+
+
+    // Kontrollime, kas kõik on valitud
+
+    for (var i = 0; i < uuringud.length; i++) {
+
+        uuringud[i].addEventListener("change", function () {
+
+            var koikValitud = true;
+
+            for (var j = 0; j < uuringud.length; j++) {
+
+                if (!uuringud[j].checked) {
+                    koikValitud = false;
+                    break;
+                }
+            }
+
+            if (valiKoik) {
+                valiKoik.checked = koikValitud;
+            }
+
+        });
+    }
+
+
+    // Lehe avamisel kontrollime valikuid
+
+    var koikValitud = true;
+
+    if (uuringud.length == 0) {
+        koikValitud = false;
+    }
+
+    for (var i = 0; i < uuringud.length; i++) {
+
+        if (!uuringud[i].checked) {
+            koikValitud = false;
+            break;
+        }
+    }
+
+    if (valiKoik) {
+        valiKoik.checked = koikValitud;
+    }
+
+</script>
+
+
+<script defer
+        src="https://cdn.jsdelivr.net/npm/mathlive">
+</script>
+
+<script defer
+        src="~/js/valemi-toimetaja.js">
+</script>

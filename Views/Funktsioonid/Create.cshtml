@@ -1,22 +1,40 @@
 ﻿@model FunktsiooniUurimine
+
 @{
     ViewData["Title"] = "Uus funktsioon";
 }
 
-<h1>Uus funktsioon</h1>
+<h1 class="mb-4">Uus funktsioon</h1>
 
 <form asp-action="Create" method="post">
+
     <partial name="_Valjad" />
-    <button type="submit" class="btn btn-success">Salvesta</button>
-    <button type="button" class="btn btn-secondary"
-            onclick="joonistaGraafik(document.getElementById('Valem').value)">
-        Eelvaade
-    </button>
-    <a asp-action="Index" class="btn btn-link">Tühista</a>
+
+    <div class="d-flex gap-2 flex-wrap mt-3">
+
+        <button type="submit"
+                class="btn btn-success">
+            Salvesta
+        </button>
+
+        <button type="button"
+                class="btn btn-secondary"
+                onclick="joonistaGraafik(document.getElementById('Valem').value)">
+            Eelvaade
+        </button>
+
+        <a asp-action="History"
+           class="btn btn-outline-secondary">
+            Tühista
+        </a>
+
+    </div>
+
 </form>
 
 <partial name="_Graafik" />
 
-@section Scripts {
+@section Scripts
+{
     <partial name="_ValidationScriptsPartial" />
 }
