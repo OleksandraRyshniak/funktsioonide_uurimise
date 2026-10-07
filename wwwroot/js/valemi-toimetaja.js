@@ -287,6 +287,10 @@ function latexValemiks(latex) {
             throw new Error('Täida tühjad kohad');
         }
 
+        if (k === '\\cdot' || k === '\\times' || k === '\\div' || k === '*' || k === '/') {
+            throw new Error('Enne märki puudub arv või avaldis');
+        }
+
         if (k === '(') {
             const v = avaldis();
 
@@ -407,12 +411,14 @@ const NUPUD = {
         { s: '+', ins: '+', k: 'op' },
         { s: '<i>x</i>', ins: 'x', k: 'fn' },
         { s: '|x|', ins: '\\left|#0\\right|', k: 'fn' },
-
         { s: '( )', ins: '\\left(#0\\right)', k: 'op', lai: 2 },
         { s: '<i>e</i>', ins: 'e', k: 'fn' },
         { s: '◀', cmd: 'moveToPreviousChar' },
         { s: '▶', cmd: 'moveToNextChar' },
-        { s: 'Tühjenda', cmd: 'clear', k: 'kl-punane', lai: 3 }
+        { s: '( )<sup>2</sup>', ins: '\\left(#@\\right)^{2}', opt: { selectionMode: 'after' }, k: 'fn' },
+        { s: '( )<sup>n</sup>', ins: '\\left(#@\\right)^{#?}', k: 'fn' },
+        { s: 'Tühjenda', cmd: 'clear', k: 'kl-punane', lai: 5 }
+        
     ],
 
     trig: [
@@ -468,9 +474,12 @@ const NUPUD = {
         { s: '<i>e</i>', ins: 'e', k: 'fn' },
         { s: '<i>x</i>', ins: 'x', k: 'fn' },
 
+
         { s: '( )', ins: '\\left(#0\\right)', k: 'op' },
 
         { s: '⌫', cmd: 'deleteBackward', k: 'kl-punane' },
+        { s: '( )<sup>2</sup>', ins: '\\left(#@\\right)^{2}', opt: { selectionMode: 'after' }, k: 'fn' },
+        { s: '( )<sup>n</sup>', ins: '\\left(#@\\right)^{#?}', k: 'fn' },
         { s: 'Tühjenda', cmd: 'clear', k: 'kl-punane' }
     ]
 };
@@ -521,7 +530,7 @@ customElements.whenDefined('math-field').then(function () {
                 mf.focus();
 
                 if (n.ins !== undefined) {
-                    mf.insert(n.ins);
+                    mf.insert(n.ins, n.opt);
                 }
                 else if (n.cmd === 'clear') {
                     mf.setValue('');

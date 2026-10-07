@@ -6,14 +6,15 @@
     <title>@ViewData["Title"] - Funktsioonide uurimine</title>
     <script type="importmap"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <!--<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />-->
+    <link rel="stylesheet" href="~/css/minimal.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/funktsioonide_uurimise.styles.css" asp-append-version="true" />
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">funktsioonide_uurimise</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Funktsioonide uurimise veebirakendus</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -35,6 +36,11 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="Funktsioonid" asp-action="History">
                                 Ajalugu
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Funktsioonid" asp-action="Teatmik">
+                                Juhend
                             </a>
                         </li>
                     </ul>

@@ -1,0 +1,667 @@
+/* ===== Minimalistlik disain: ühendatud kõik stiilid ===== */
+
+:root {
+    --c-text: #111;
+    --c-muted: #6b7280;
+    --c-line: #e5e7eb;
+    --c-soft: #f7f7f8;
+    --c-danger: #b91c1c;
+    --radius: 6px;
+}
+
+body {
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color: var(--c-text);
+    background: #fff;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+    font-weight: 600;
+    letter-spacing: -.01em;
+}
+
+a {
+    color: var(--c-text);
+}
+
+    a:hover {
+        color: var(--c-muted);
+    }
+
+.text-muted {
+    color: var(--c-muted) !important;
+}
+
+.container {
+    max-width: 860px;
+}
+
+hr {
+    border-color: var(--c-line);
+    opacity: 1;
+}
+
+/* ----- Navigatsioon ja jalus ----- */
+.navbar {
+    background: #fff !important;
+    border-bottom: 1px solid var(--c-line) !important;
+    box-shadow: none !important;
+}
+
+    .navbar-brand, .navbar .nav-link {
+        color: var(--c-text) !important;
+    }
+
+    .navbar .nav-link {
+        color: var(--c-muted) !important;
+    }
+
+        .navbar .nav-link:hover {
+            color: var(--c-text) !important;
+        }
+
+.footer {
+    border-top: 1px solid var(--c-line) !important;
+    color: var(--c-muted);
+}
+
+/* ----- Nupud ----- */
+.btn {
+    border-radius: var(--radius);
+    font-weight: 500;
+    padding: .45rem .95rem;
+    box-shadow: none !important;
+    transition: background .15s, border-color .15s, color .15s;
+}
+
+.btn-lg {
+    padding: .6rem 1.25rem;
+    font-size: 1rem;
+}
+
+.btn-primary, .btn-success {
+    background: #111;
+    border: 1px solid #111;
+    color: #fff;
+}
+
+    .btn-primary:hover, .btn-primary:focus, .btn-primary:active,
+    .btn-success:hover, .btn-success:focus, .btn-success:active {
+        background: #333;
+        border-color: #333;
+        color: #fff;
+    }
+
+.btn-secondary, .btn-outline-primary, .btn-outline-secondary {
+    background: #fff;
+    border: 1px solid var(--c-line);
+    color: var(--c-text);
+}
+
+    .btn-secondary:hover, .btn-outline-primary:hover, .btn-outline-secondary:hover,
+    .btn-secondary:focus, .btn-outline-primary:focus, .btn-outline-secondary:focus {
+        background: #fff;
+        border-color: #111;
+        color: #111;
+    }
+
+.btn-danger, .btn-outline-danger {
+    background: #fff;
+    border: 1px solid #fecaca;
+    color: var(--c-danger);
+}
+
+    .btn-danger:hover, .btn-outline-danger:hover,
+    .btn-danger:focus, .btn-outline-danger:focus {
+        background: #fef2f2;
+        border-color: var(--c-danger);
+        color: var(--c-danger);
+    }
+
+.btn-link {
+    color: var(--c-muted);
+    text-decoration: none;
+}
+
+    .btn-link:hover {
+        color: var(--c-text);
+    }
+
+/* ----- Vormid ----- */
+.form-control, .form-select {
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius);
+}
+
+    .form-control:focus, .form-select:focus {
+        border-color: #111;
+        box-shadow: 0 0 0 3px rgba(0, 0, 0, .08);
+    }
+
+.form-check-input {
+    border-color: #bbb;
+}
+
+    .form-check-input:checked {
+        background-color: #111;
+        border-color: #111;
+    }
+
+    .form-check-input:focus {
+        border-color: #111;
+        box-shadow: 0 0 0 3px rgba(0, 0, 0, .08);
+    }
+
+/* ----- Kaardid ja teated ----- */
+.card {
+    border: 1px solid var(--c-line);
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: none !important;
+}
+
+.card-header, .card-footer {
+    background: #fff !important;
+}
+
+.card-header {
+    border-bottom: 1px solid var(--c-line);
+}
+
+.shadow-sm {
+    box-shadow: none !important;
+}
+
+.alert-warning {
+    background: var(--c-soft);
+    border: 1px solid var(--c-line);
+    color: var(--c-text);
+}
+
+/* ----- Avaleht ----- */
+.home-page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2.5rem 0 2rem;
+}
+
+    .home-page .hero-section {
+        padding: 1.5rem 0 3rem;
+        text-align: left;
+        background: none;
+        border: 0;
+    }
+
+    .home-page .hero-badge {
+        display: inline-block;
+        padding: 0;
+        margin-bottom: 1rem;
+        background: none;
+        border: 0;
+        border-radius: 0;
+        font-size: .75rem;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+        color: var(--c-muted);
+    }
+
+    .home-page .hero-content h1 {
+        font-size: clamp(2rem, 6vw, 3.25rem);
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: 1rem;
+    }
+
+        .home-page .hero-content h1 span {
+            display: block;
+            color: var(--c-muted);
+            font-weight: 400;
+            background: none;
+        }
+
+    .home-page .hero-text {
+        color: var(--c-muted);
+        max-width: 520px;
+        font-size: 1.05rem;
+    }
+
+    .home-page .hero-buttons {
+        display: flex;
+        gap: .5rem;
+        flex-wrap: wrap;
+        margin-top: 1.5rem;
+    }
+
+    .home-page .features-section {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem 2.5rem;
+        border-top: 1px solid var(--c-line);
+        padding-top: 2rem;
+    }
+
+    .home-page .feature-card {
+        background: none;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 0;
+        transform: none;
+    }
+
+    .home-page .feature-icon {
+        display: block;
+        width: auto;
+        height: auto;
+        margin-bottom: .4rem;
+        background: none;
+        border-radius: 0;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: .85rem;
+        color: var(--c-muted);
+    }
+
+    .home-page .feature-card h3 {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: .25rem;
+    }
+
+    .home-page .feature-card p {
+        color: var(--c-muted);
+        font-size: .95rem;
+        margin: 0;
+    }
+
+/* ----- Funktsiooni sisestus ----- */
+#matemaatikaVali {
+    display: block;
+    width: 100%;
+    font-size: 1.75rem;
+    min-height: 64px;
+    padding: 8px 14px;
+    background: #fff;
+    border: 1px solid var(--c-line);
+    border-radius: 8px;
+}
+
+    #matemaatikaVali:focus-within {
+        border-color: #111;
+        box-shadow: 0 0 0 3px rgba(0, 0, 0, .08);
+        outline: none;
+    }
+
+    #matemaatikaVali::part(virtual-keyboard-toggle),
+    #matemaatikaVali::part(menu-toggle) {
+        display: none;
+    }
+
+/* ----- Matemaatiline klaviatuur ----- */
+.klaviatuuri-plokk {
+    max-width: 650px;
+    padding: 0;
+    background: none;
+    border-radius: 0;
+}
+
+    .klaviatuuri-plokk .klaviatuuri-tabs {
+        display: flex;
+        gap: 4px;
+        margin-bottom: 12px;
+        overflow-x: auto;
+        border-bottom: 1px solid var(--c-line);
+    }
+
+    .klaviatuuri-plokk .klaviatuuri-tab {
+        border: 0;
+        border-bottom: 2px solid transparent;
+        border-radius: 0;
+        background: none;
+        box-shadow: none;
+        padding: 8px 12px;
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--c-muted);
+        white-space: nowrap;
+    }
+
+        .klaviatuuri-plokk .klaviatuuri-tab:hover {
+            background: none;
+            color: var(--c-text);
+        }
+
+        .klaviatuuri-plokk .klaviatuuri-tab.active {
+            background: none;
+            color: var(--c-text);
+            border-bottom-color: #111;
+        }
+
+    .klaviatuuri-plokk .kl-ruudustik {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 6px;
+    }
+
+        .klaviatuuri-plokk .kl-ruudustik button {
+            height: 48px;
+            border: 1px solid var(--c-line);
+            border-radius: var(--radius);
+            background: #fff;
+            color: var(--c-text);
+            font-size: 1.1rem;
+            box-shadow: none;
+            user-select: none;
+        }
+
+            .klaviatuuri-plokk .kl-ruudustik button:hover {
+                background: var(--c-soft);
+                transform: none;
+                box-shadow: none;
+            }
+
+            .klaviatuuri-plokk .kl-ruudustik button:active {
+                background: #ececec;
+                transform: none;
+            }
+
+            .klaviatuuri-plokk .kl-ruudustik button.op,
+            .klaviatuuri-plokk .kl-ruudustik button.fn {
+                background: var(--c-soft);
+                color: var(--c-text);
+                font-size: 1rem;
+            }
+
+            .klaviatuuri-plokk .kl-ruudustik button.kl-punane {
+                background: #fff;
+                color: var(--c-danger);
+                border-color: #fecaca;
+            }
+
+.kl-murd {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1;
+    font-size: .95rem;
+}
+
+    .kl-murd > span:first-child {
+        border-bottom: 1.5px solid currentColor;
+        padding: 0 5px 2px;
+    }
+
+    .kl-murd > span:last-child {
+        padding-top: 2px;
+    }
+
+@media (max-width: 600px) {
+    .klaviatuuri-plokk .kl-ruudustik {
+        gap: 5px;
+    }
+
+        .klaviatuuri-plokk .kl-ruudustik button {
+            height: 44px;
+            font-size: 1rem;
+        }
+
+    .klaviatuuri-plokk .klaviatuuri-tab {
+        padding: 8px 10px;
+        font-size: 13px;
+    }
+
+    .home-page .features-section {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ----- Lahenduskäik (Details) ----- */
+.card-body .vastus-kast {
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    background: var(--c-soft);
+    border-left: 3px solid #111;
+    border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.card-body .vastus-pealkiri {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: var(--c-muted);
+    margin-bottom: 4px;
+}
+
+.card-body .vastus-tekst {
+    font-size: 1.1rem;
+    font-weight: 600;
+    white-space: pre-line;
+}
+
+.card-body .lahenduskaik {
+    padding-top: 4px;
+}
+
+.card-body .lahendus-pealkiri {
+    font-size: .9rem;
+    font-weight: 600;
+    color: var(--c-muted);
+    margin-bottom: 8px;
+}
+
+.card-body .lahendus-rida {
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+    line-height: 1.6;
+}
+
+    .card-body .lahendus-rida:last-child {
+        border-bottom: 0;
+    }
+
+/* ----- Jalus lehe lõpus, mitte sisu peal ----- */
+html {
+    position: static !important;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 0 !important;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+    body > .container {
+        flex: 1 0 auto;
+        width: 100%;
+    }
+
+.footer {
+    position: static !important;
+    width: 100%;
+    margin-top: 3rem;
+    padding: 1.25rem 0;
+    line-height: 1.5 !important;
+    white-space: normal !important;
+}
+
+/* ----- Ajalugu: loend kaartide asemel ----- */
+.ajalugu-pais {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 1rem;
+    margin: 1.5rem 0 2rem;
+}
+
+    .ajalugu-pais h1 {
+        font-size: 1.75rem;
+        margin: 0 0 .25rem;
+    }
+
+.ajalugu-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--c-line);
+}
+
+.ajalugu-rida {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    gap: 1rem;
+    padding: .9rem 0;
+    border-bottom: 1px solid var(--c-line);
+}
+
+.ajalugu-valem {
+    min-width: 0;
+    overflow-x: auto;
+    white-space: nowrap;
+    text-decoration: none;
+    font-size: 1.1rem;
+}
+
+.ajalugu-fx {
+    color: var(--c-muted);
+    margin-right: .4rem;
+}
+
+.ajalugu-aeg {
+    color: var(--c-muted);
+    font-size: .8rem;
+    white-space: nowrap;
+}
+
+.ajalugu-tegevused {
+    display: flex;
+    gap: .4rem;
+}
+
+    .ajalugu-tegevused .btn {
+        white-space: nowrap;
+    }
+
+.tuhi-ajalugu {
+    text-align: center;
+    padding: 4rem 0;
+    border-top: 1px solid var(--c-line);
+}
+
+@media (max-width: 640px) {
+    .ajalugu-rida {
+        grid-template-columns: 1fr auto;
+        gap: .25rem 1rem;
+    }
+
+    .ajalugu-aeg {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    .ajalugu-tegevused {
+        grid-column: 2;
+        grid-row: 1 / 3;
+    }
+}
+
+/* ----- Teatmik ----- */
+.teatmik {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+    .teatmik h1 {
+        font-size: 1.75rem;
+        margin: 1.5rem 0 .25rem;
+    }
+
+    .teatmik > p {
+        margin-bottom: 1.5rem;
+    }
+
+.teatmik-punkt {
+    border-bottom: 1px solid var(--c-line);
+}
+
+    .teatmik-punkt:first-of-type {
+        border-top: 1px solid var(--c-line);
+    }
+
+    .teatmik-punkt summary {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: .9rem 0;
+        font-weight: 600;
+        cursor: pointer;
+        list-style: none;
+    }
+
+        .teatmik-punkt summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .teatmik-punkt summary::after {
+            content: "+";
+            color: var(--c-muted);
+            font-weight: 400;
+            font-size: 1.25rem;
+        }
+
+    .teatmik-punkt[open] summary::after {
+        content: "−";
+    }
+
+.teatmik-sisu {
+    padding: 0 0 1.25rem;
+}
+
+    .teatmik-sisu p {
+        margin: 0 0 .6rem;
+    }
+
+    .teatmik-sisu ul, .teatmik-sisu ol {
+        margin: 0 0 .8rem;
+        padding-left: 1.25rem;
+    }
+
+.teatmik-naide {
+    margin-top: .75rem;
+    padding: .75rem 1rem;
+    font-size: .95rem;
+    background: var(--c-soft);
+    border-left: 3px solid #111;
+    border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.teatmik-naide-pealkiri {
+    margin-bottom: .25rem;
+    font-size: .75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: var(--c-muted);
+}
+
+.teatmik-tabel {
+    width: 100%;
+    margin: .5rem 0 .8rem;
+    border-collapse: collapse;
+    font-size: .95rem;
+}
+
+    .teatmik-tabel td {
+        padding: .4rem .5rem .4rem 0;
+        border-bottom: 1px solid var(--c-line);
+        vertical-align: top;
+    }
+
+        .teatmik-tabel td:first-child {
+            color: var(--c-muted);
+            width: 36%;
+        }

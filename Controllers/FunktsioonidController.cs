@@ -438,6 +438,7 @@ public class FunktsioonidController : Controller
         if (!string.IsNullOrWhiteSpace(olem.Muutumispiirkond))
             olem.Valikud.Add("Muutumispiirkond");
 
+
         if (!string.IsNullOrWhiteSpace(olem.Nullkohad))
             olem.Valikud.Add("Nullkohad");
 
@@ -446,7 +447,8 @@ public class FunktsioonidController : Controller
         {
             olem.Valikud.Add("Margiuuring");
         }
-
+        if (!string.IsNullOrWhiteSpace(olem.Tuletis))
+            olem.Valikud.Add("Tuletis");
         if (!string.IsNullOrWhiteSpace(olem.Kasvamine) ||
             !string.IsNullOrWhiteSpace(olem.Kahanemine))
         {
@@ -469,4 +471,5 @@ public class FunktsioonidController : Controller
         if (!string.IsNullOrWhiteSpace(olem.Periood))
             olem.Valikud.Add("Periood");
     }
+    public IActionResult Teatmik() => View();
 }

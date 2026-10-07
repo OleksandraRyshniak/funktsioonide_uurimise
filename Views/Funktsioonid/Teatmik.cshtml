@@ -1,0 +1,188 @@
+@{
+    ViewData["Title"] = "Juhend";
+}
+
+<div class="teatmik">
+
+    <h1>Teatmik</h1>
+    <p class="text-muted">
+        Kuidas funktsiooni uuritakse samm-sammult.
+        Kõigis näidetes on funktsioon f(x) = x³ − 3x.
+    </p>
+
+    <details class="teatmik-punkt" open>
+        <summary>1. Määramispiirkond X</summary>
+        <div class="teatmik-sisu">
+            <p>Kõigi x väärtuste hulk, mille korral funktsiooni saab arvutada.</p>
+            <ul>
+                <li>Murd: nimetaja ei tohi olla 0.</li>
+                <li>Ruutjuur √u: u ≥ 0.</li>
+                <li>Logaritm ln u: u &gt; 0.</li>
+                <li>tan x: cos x ≠ 0, st x ≠ π/2 + πk.</li>
+            </ul>
+            <p>Kirjuta piirangud üles, lahenda need ja jäta keelatud x välja.</p>
+            <div class="teatmik-naide">
+                <div class="teatmik-naide-pealkiri">Näide</div>
+                f(x) = x³ − 3x on polünoom, piiranguid pole: X = (−∞; ∞).<br />
+                Võrdluseks: f(x) = 1/(x − 2) ⇒ x ≠ 2.
+            </div>
+        </div>
+    </details>
+
+    <details class="teatmik-punkt">
+        <summary>2. Muutumispiirkond Y</summary>
+        <div class="teatmik-sisu">
+            <p>Kõigi funktsiooni väärtuste f(x) hulk.</p>
+            <ol>
+                <li>Leia ekstreemumid (maksimumi ja miinimumi väärtused).</li>
+                <li>Vaata, kuhu f(x) läheb, kui x → −∞ ja x → +∞ (ning katkevuskohtade ümber).</li>
+                <li>Pane need kokku. Perioodilise funktsiooni korral piisab ühest perioodist.</li>
+            </ol>
+            <div class="teatmik-naide">
+                <div class="teatmik-naide-pealkiri">Näide</div>
+                Kui x → −∞, siis f(x) → −∞; kui x → +∞, siis f(x) → +∞.
+                Funktsioon on pidev ⇒ Y = (−∞; ∞).
+            </div>
+        </div>
+    </details>
+
+    <details class="teatmik-punkt">
+        <summary>3. Tuletis f'(x)</summary>
+        <div class="teatmik-sisu">
+            <p>Tuletis näitab, kui kiiresti funktsioon muutub. Põhireeglid:</p>
+            <table class="teatmik-tabel">
+                <tr><td>Astmefunktsioon</td><td>(xⁿ)' = n · xⁿ⁻¹</td></tr>
+                <tr><td>Summa, vahe</td><td>(u ± v)' = u' ± v'</td></tr>
+                <tr><td>Konstant kordajaga</td><td>(c · u)' = c · u'</td></tr>
+                <tr><td>Korrutis</td><td>(u · v)' = u'v + uv'</td></tr>
+                <tr><td>Jagatis</td><td>(u / v)' = (u'v − uv') / v²</td></tr>
+                <tr><td>Liitfunktsioon</td><td>(u(v))' = u'(v) · v'</td></tr>
+                <tr><td>sin, cos</td><td>(sin x)' = cos x; (cos x)' = −sin x</td></tr>
+                <tr><td>ln, eˣ, √x</td><td>(ln x)' = 1/x; (eˣ)' = eˣ; (√x)' = 1/(2√x)</td></tr>
+            </table>
+            <div class="teatmik-naide">
+                <div class="teatmik-naide-pealkiri">Näide</div>
+                f(x) = x³ − 3x ⇒ f'(x) = 3x² − 3.
+            </div>
+        </div>
+    </details>
+
+    <details class="teatmik-punkt">
+        <summary>4. Nullkohad</summary>
+        <div class="teatmik-sisu">
+            <p>Punktid, kus graafik lõikab x-telge: lahenda võrrand f(x) = 0.
+               Kontrolli vastust, pannes x tagasi funktsiooni.</p>
+            <div class="teatmik-naide">
+                <div class="teatmik-naide-pealkiri">Näide</div>
+                x³ − 3x = x(x² − 3) = 0 ⇒ x = 0, x = −√3, x = √3.
+            </div>
+        </div>
+    </details>
+
+    <details class="teatmik-punkt">
+        <summary>5. Positiivsus ja negatiivsus</summary>
+        <div class="teatmik-sisu">
+            <ol>
+                <li>Nullkohad (ja katkevuskohad) jagavad x-telje vahemikeks.</li>
+                <li>Võta igast vahemikust üks kontrollpunkt.</li>
+                <li>Arvuta f(kontrollpunkt): kui &gt; 0, siis kogu vahemikus f &gt; 0; kui &lt; 0, siis f &lt; 0.</li>
+            </ol>
+            <div class="teatmik-naide">
+                <div class="teatmik-naide-pealkiri">Näide</div>
+                Nullkohad: −√3 ≈ −1,73; 0; √3 ≈ 1,73.<br />
+                (−∞; −√3): f(−2) = −2 &lt; 0<br />
+                (−√3; 0): f(−1) = 2 &gt; 0<br />
+                (0; √3): f(1) = −2 &lt; 0<br />
+                (√3; ∞): f(2) = 2 &gt; 0<br />
+                Vastus: f &gt; 0 vahemikes (−√3; 0) ∪ (√3; ∞); f &lt; 0 vahemikes (−∞; −√3) ∪ (0; √3).
+            </div>
+        </div>
+    </details>
+
+    <details class="teatmik-punkt">
+        <summary>6. Kasvamine ja kahanemine</summary>
+        <div class="teatmik-sisu">
+            <p>Kui f'(x) &gt; 0, siis funktsioon kasvab; kui f'(x) &lt; 0, siis kahaneb.</p>
+            <ol>
+                <li>Leia f'(x).</li>
+                <li>Lahenda f'(x) = 0.</li>
+                <li>Võta igast vahemikust kontrollpunkt ja vaata f'(x) märki.</li>
+            </ol>
+            <div class="teatmik-naide">
+                <div class="teatmik-naide-pealkiri">Näide</div>
+                f'(x) = 3x² − 3 = 3(x − 1)(x + 1) = 0 ⇒ x = −1, x = 1.<br />
+                f'(−2) = 9 &gt; 0, f'(0) = −3 &lt; 0, f'(2) = 9 &gt; 0.<br />
+                Kasvab: (−∞; −1) ∪ (1; ∞). Kahaneb: (−1; 1).
+            </div>
+        </div>
+    </details>
+
+    <details class="teatmik-punkt">
+        <summary>7. Ekstreemumid</summary>
+        <div class="teatmik-sisu">
+            <p>Kahtlased punktid on need, kus f'(x) = 0. Vaata f'(x) märki enne ja pärast punkti:</p>
+            <ul>
+                <li>+ → − : maksimum</li>
+                <li>− → + : miinimum</li>
+                <li>märk ei muutu: ekstreemumit ei ole</li>
+            </ul>
+            <p>Ekstreemumi väärtuse saad, pannes x funktsiooni f(x).</p>
+            <div class="teatmik-naide">
+                <div class="teatmik-naide-pealkiri">Näide</div>
+                x = −1: f' märk + → −, maksimum, f(−1) = 2.<br />
+                x = 1: f' märk − → +, miinimum, f(1) = −2.
+            </div>
+        </div>
+    </details>
+
+    <details class="teatmik-punkt">
+        <summary>8. Nõgusus, kumerus, käänupunktid</summary>
+        <div class="teatmik-sisu">
+            <p>Kasuta teist tuletist f''(x).</p>
+            <ul>
+                <li>f''(x) &gt; 0: funktsioon on nõgus.</li>
+                <li>f''(x) &lt; 0: funktsioon on kumer.</li>
+                <li>Käänupunkt: koht, kus f''(x) märk muutub.</li>
+            </ul>
+            <div class="teatmik-naide">
+                <div class="teatmik-naide-pealkiri">Näide</div>
+                f''(x) = 6x. Kui x &gt; 0, siis nõgus (0; ∞); kui x &lt; 0, siis kumer (−∞; 0).<br />
+                Käänupunkt: (0; 0).
+            </div>
+        </div>
+    </details>
+
+    <details class="teatmik-punkt">
+        <summary>9. Paaris- või paaritu funktsioon</summary>
+        <div class="teatmik-sisu">
+            <ul>
+                <li>f(−x) = f(x): paarisfunktsioon, graafik on sümmeetriline y-telje suhtes.</li>
+                <li>f(−x) = −f(x): paaritu funktsioon, graafik on sümmeetriline koordinaatide alguspunkti suhtes.</li>
+                <li>Muul juhul ei ole kumbagi.</li>
+            </ul>
+            <p>Eeldus: määramispiirkond peab olema nulli suhtes sümmeetriline.</p>
+            <div class="teatmik-naide">
+                <div class="teatmik-naide-pealkiri">Näide</div>
+                f(−x) = (−x)³ − 3(−x) = −x³ + 3x = −f(x) ⇒ paaritu funktsioon.
+            </div>
+        </div>
+    </details>
+
+    <details class="teatmik-punkt">
+        <summary>10. Perioodilisus</summary>
+        <div class="teatmik-sisu">
+            <p>Otsi vähim T &gt; 0, mille korral f(x + T) = f(x) kõigil x. Tuntud perioodid:</p>
+            <ul>
+                <li>sin x ja cos x: T = 2π</li>
+                <li>tan x: T = π</li>
+                <li>sin(kx), cos(kx): T = 2π / |k|</li>
+            </ul>
+            <div class="teatmik-naide">
+                <div class="teatmik-naide-pealkiri">Näide</div>
+                f(x) = x³ − 3x kasvab piiramatult, seega ei ole perioodiline.
+                Konstantsel funktsioonil vähimat positiivset perioodi ei ole.
+            </div>
+        </div>
+    </details>
+
+</div>
