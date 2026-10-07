@@ -37,13 +37,6 @@ Klooni projekt:
 git clone https://github.com/OleksandraRyshniak/funktsioonide_uurimise.git
 ```
 
-Liigu projekti kausta ja käivita:
-
-```bash
-dotnet restore
-dotnet run
-```
-
 Seejärel ava terminalis kuvatud `localhost` aadress veebibrauseris.
 
 ## Autor
